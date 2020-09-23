@@ -60,19 +60,43 @@ class Calculator {
         if (isNaN(prev) || isNaN(current)) return
         switch (this.operation) {
             case '+': {
-                computation = prev + current
+                let prevLength = prev.toString().slice(prev.toString().indexOf('.') + 1).length
+                let currentLength = current.toString().slice(current.toString().indexOf('.') + 1).length
+                if (prevLength > currentLength) {
+                    computation = +(prev + current).toFixed(prevLength)
+                } else {
+                    computation = +(prev + current).toFixed(currentLength)
+                }
                 break
             }
             case '-': {
-                computation = prev - current
+                let prevLength = prev.toString().slice(prev.toString().indexOf('.') + 1).length
+                let currentLength = current.toString().slice(current.toString().indexOf('.') + 1).length
+                if (prevLength > currentLength) {
+                    computation = +(prev - current).toFixed(prevLength)
+                } else {
+                    computation = +(prev - current).toFixed(currentLength)
+                }
                 break
             }
             case '*': {
-                computation = prev * current
+                let prevLength = prev.toString().slice(prev.toString().indexOf('.') + 1).length
+                let currentLength = current.toString().slice(current.toString().indexOf('.') + 1).length
+                if (prevLength > currentLength) {
+                    computation = +(prev * current).toFixed(prevLength + 1)
+                } else {
+                    computation = +(prev * current).toFixed(currentLength + 1)
+                }
                 break
             }
             case '÷': {
-                computation = prev / current
+                let prevLength = prev.toString().slice(prev.toString().indexOf('.') + 1).length
+                let currentLength = current.toString().slice(current.toString().indexOf('.') + 1).length
+                if (prevLength > currentLength) {
+                    computation = +(prev / current).toFixed(prevLength + 1)
+                } else {
+                    computation = +(prev / current).toFixed(currentLength + 1)
+                }
                 break
             }
             case '^': {
@@ -109,8 +133,8 @@ class Calculator {
     updateDisplay() {
         if (this.error && this.currentOperandTextElement.innerText === 'Error') {
             this.error = false
-            this.currentOperand=''
-            this.previousOperand=''
+            this.currentOperand = ''
+            this.previousOperand = ''
             return
         }
         this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand)
