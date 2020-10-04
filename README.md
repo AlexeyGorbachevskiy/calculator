@@ -8,7 +8,7 @@
 
 ## Task 1. Calculator
 
-![screenshot](images/calculator.png)
+![screenshot](https://github.com/rolling-scopes-school/tasks/blob/master/tasks/ready-projects/images/calculator.png)
 
 Калькулятор - один из лучших проектов для первого знакомства с JavaScript. Такой проект включает в себя достаточно сложные моменты создания пользовательского интерфейса и использования JavaScript для работы с ним, и при этом достаточно прост в выполнении и доступен разработчикам с любым уровнем навыков. Если вы хотите изучить JavaScript или улучшить свои навыки работы с ним, этот проект поможет достичь поставленной цели.
 
