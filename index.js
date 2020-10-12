@@ -2,6 +2,7 @@ class Calculator {
     constructor(previousOperandTextElement, currentOperandTextElement) {
         this.previousOperandTextElement = previousOperandTextElement
         this.currentOperandTextElement = currentOperandTextElement
+        this.isEqualClicked = false
         this.clear()
     }
 
@@ -164,13 +165,18 @@ const calculator = new Calculator(previousOperandTextElement, currentOperandText
 
 numberButtons.forEach(button => {
     button.addEventListener('click', () => {
+        if (calculator.isEqualClicked) {
+            calculator.clear()
+        }
         calculator.appendNumber(button.innerText)
         calculator.updateDisplay()
+        calculator.isEqualClicked = false
     })
 })
 
 operationButtons.forEach(button => {
     button.addEventListener('click', () => {
+        calculator.isEqualClicked = false
         const isNegative = calculator.isNegativeOperand(button.innerText)
         if (!isNegative) {
             calculator.chooseOperation(button.innerText)
@@ -182,17 +188,20 @@ operationButtons.forEach(button => {
 
 
 equalsButton.addEventListener('click', button => {
+    calculator.isEqualClicked = true
     calculator.compute()
     calculator.updateDisplay()
-    calculator.clear()
+    // calculator.clear()
 })
 
 allClearButton.addEventListener('click', button => {
+    calculator.isEqualClicked = false
     calculator.clear()
     calculator.updateDisplay()
 })
 
 deleteButton.addEventListener('click', button => {
+    calculator.isEqualClicked = false
     calculator.delete()
     calculator.updateDisplay()
 })
